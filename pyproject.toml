@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "qa-flipper-units"
+version = "0.1.0"
+description = "Simple script to run unit tests on flipper and parse the result"
+authors = ["Konstantin Volkov <k.volkov@flipperdevices.com>"]
+readme = "README.md"
+packages = [{include = "qa_flipper_units"}]
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+pyserial = "^3.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
