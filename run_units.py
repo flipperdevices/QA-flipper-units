@@ -63,6 +63,10 @@ def main():
             if not status:
                 status = re.match(status_pattern, line)
 
+        if leak is None or time is None or leak is None or status is None:
+            print("Failed to get data.")
+            sys.exit(1)
+
         leak = int(re.findall(r"\d+", leak.group(0))[0])
         status = re.findall(r"\w+", status.group(0))[1]
         tests = int(re.findall(r"\d+", tests.group(0))[0])
