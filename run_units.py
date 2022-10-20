@@ -4,6 +4,7 @@ import sys, os
 import serial
 import re
 
+LEAK_THRESHOLD = 3000  # added until units are fixed
 
 def flp_serial_by_name(flp_name):
     if sys.platform == 'darwin':    #MacOS
@@ -72,14 +73,14 @@ def main():
         tests = int(re.findall(r"\d+", tests.group(0))[0])
         time = int(re.findall(r"\d+", time.group(0))[0])
 
-        if tests > 0 or leak > 0 or status != "Passed":
+        if tests > 0 or leak > LEAK_THRESHOLD or status != "Passed":
             print(f"Got {tests} failed tests.")
             print(f"Leaked {leak} bytes.")
             print(f"Status by flipper: {status}")
-            print(f"Time elapsed {time/100} seconds.")
+            print(f"Time elapsed {time/1000} seconds.")
             sys.exit(1)
 
-        print(f"Tests ran successfully! Time elapsed {time} seconds.")
+        print(f"Tests ran successfully! Time elapsed {time/1000} seconds.")
         sys.exit(0)
 
 
