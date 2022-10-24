@@ -35,7 +35,7 @@ def main():
 
         flipper.timeout = 300
 
-        flipper.read_until(b'>: ')
+        flipper.read_until(b'>: ').decode("utf-8")
         flipper.write(b"unit_tests\r")
         data = flipper.read_until(b'>: ').decode("utf-8")
 
@@ -65,7 +65,7 @@ def main():
                 status = re.match(status_pattern, line)
 
         if leak is None or time is None or leak is None or status is None:
-            print("Failed to get data.")
+            print("Failed to get data. Or output is corrupt")
             sys.exit(1)
 
         leak = int(re.findall(r"\d+", leak.group(0))[0])
@@ -80,7 +80,7 @@ def main():
             print(f"Time elapsed {time/1000} seconds.")
             sys.exit(1)
 
-        print(f"Tests ran successfully! Time elapsed {time/1000} seconds.")
+        print(f"Tests ran successfully! Time elapsed {time/1000} seconds. Passed {tests} tests.")
         sys.exit(0)
 
 
