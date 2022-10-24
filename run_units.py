@@ -4,21 +4,10 @@ import sys, os
 import serial
 import re
 
+from check_flipper_availability import flp_serial_by_name
+
+
 LEAK_THRESHOLD = 3000  # added until units are fixed
-
-def flp_serial_by_name(flp_name):
-    if sys.platform == 'darwin':    #MacOS
-        flp_serial = '/dev/cu.usbmodemflip_' + flp_name + '1'
-    elif sys.platform == 'linux':   #Linux
-        flp_serial = '/dev/serial/by-id/usb-Flipper_Devices_Inc._Flipper_' + flp_name + '_flip_' + flp_name + '-if00'
-
-    if os.path.exists(flp_serial):
-        return flp_serial
-    else:
-        if os.path.exists(flp_name):
-            return flp_name
-        else:
-            return ''
 
 
 def main():
