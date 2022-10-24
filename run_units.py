@@ -73,7 +73,7 @@ def main():
         tests = int(re.findall(r"\d+", tests.group(0))[0])
         time = int(re.findall(r"\d+", time.group(0))[0])
 
-        if tests > 0 or leak > LEAK_THRESHOLD or status != "Passed":
+        if tests > 0 or leak > LEAK_THRESHOLD or status != "PASSED":
             print(f"Got {tests} failed tests.")
             print(f"Leaked {leak} bytes.")
             print(f"Status by flipper: {status}")
