@@ -26,7 +26,7 @@ def main():
     elapsed = 0
     flipper = flp_serial_by_name(flipper_name)
 
-    while flipper == '' or elapsed < UPDATE_TIMEOUT:
+    while flipper == '' and elapsed < UPDATE_TIMEOUT:
         elapsed += 1
         time.sleep(1)
         flipper = flp_serial_by_name(flipper_name)
